@@ -139,7 +139,7 @@ body.on .pop{animation-play-state:running}
     <div><b id="m">0</b><small>Min</small></div><div><b id="s">0</b><small>Seg</small></div>
   </div>
   <p class="msg pop" id="ms" style="animation-delay:2.2s"></p>
-  <div class="pop" style="animation-delay:2.4s"><a class="btn bangers" id="wa" target="_blank" rel="noopener">💬 ¡SÍ ASISTIRÉ!</a><p class="msg" style="font-size:.8rem;margin-top:14px">confirmo mi asistencia al cumpleaños de Mael</p></div>
+  <div class="pop" style="animation-delay:2.4s"><a class="btn bangers" id="wa" target="_blank" rel="noopener">💬 ¡SÍ ASISTIRÉ!</a><p class="msg" style="font-size:.8rem;margin-top:14px"></p></div>
   <div class="gift pop" id="gift" style="animation-delay:2.6s">
     <div class="gwrap">
       <span class="sp" style="left:-4px;top:10px">✦</span><span class="sp" style="right:-2px;top:0;animation-delay:.5s">✦</span>
@@ -166,7 +166,7 @@ var CONFIG={
   mensaje:"🦸‍♂️ ¡Una gran aventura está por comenzar! Acompáñanos a celebrar los 3 añitos de nuestro pequeño superhéroe, con mucha diversión, alegría y sorpresas increíbles. ¡Te esperamos para vivir un día inolvidable!",
   imagen:"Personaje1.png", /* opcional: tu propia imagen del 1.er personaje (PNG sin fondo: ruta propia o data:URI) */
   imagen2:"Personaje2.png", /* opcional: 2.º personaje */
-  video:"Video1.mp4", /* opcional: video de felicitación (mp4: ruta propia, ej. video.mp4) */
+  video:"Video.mp4", /* opcional: video de felicitación (mp4: ruta propia, ej. video.mp4) */
   sonido:"" /* opcional: tu sonido (mp3 corto: ruta propia o data:URI). Si lo pones, reemplaza al sonido por defecto */
 };
 /* =================================== */
@@ -178,7 +178,7 @@ $("fe").textContent=f.toLocaleDateString("es-PE",{weekday:"long",day:"numeric",m
 $("ho").textContent=("0"+f.getHours()).slice(-2)+":"+("0"+f.getMinutes()).slice(-2);
 $("lu").textContent=CONFIG.lugar;
 $("ms").textContent=CONFIG.mensaje;
-$("wa").href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent("¡Hola! ✅ Sí asistiré al cumpleaños de "+CONFIG.nombre+" 🦸");
+$("wa").href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent("Hola, soy ____ y confirmo mi asistencia al cumple de "+CONFIG.nombre+" 🦸");
 if(CONFIG.imagen)$("hero").innerHTML='<img alt="" src="'+CONFIG.imagen+'">';
 if(CONFIG.imagen2){document.querySelector(".swing").style.left="28%";var s2=document.createElement("div");s2.className="swing s2";s2.style.left="72%";s2.innerHTML='<i></i><div><img alt="" src="'+CONFIG.imagen2+'"></div>';document.querySelector(".scene").appendChild(s2)}
 
