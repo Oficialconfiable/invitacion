@@ -69,6 +69,27 @@ body.on .pop{animation-play-state:running}
 .vid{margin-top:26px;background:#fff;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:6px;padding:8px}
 .vid b{display:block;color:var(--red);font-size:1.4rem;margin-bottom:6px}
 .vid video{width:100%;max-height:70vh;display:block;background:#000;border-radius:3px}
+.gift{margin-top:34px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.gwrap{position:relative;width:130px;height:128px;margin:0 auto;transform-origin:50% 100%;animation:gshake 2.8s ease-in-out infinite}
+.gbody{position:absolute;left:12px;right:12px;bottom:0;height:72px;background:var(--red);border:4px solid var(--ink);border-radius:4px 4px 8px 8px;box-shadow:5px 5px 0 var(--ink)}
+.gbody:before,.glid:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:22px;margin-left:-11px;background:var(--yel);border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+.glid{position:absolute;left:3px;right:3px;bottom:64px;height:32px;background:var(--blue);border:4px solid var(--ink);border-radius:5px;z-index:2;transition:transform .55s cubic-bezier(.3,1.5,.5,1);animation:ghop 2.8s ease-in-out infinite}
+.glid i{position:absolute;top:-26px;width:30px;height:26px;background:var(--yel);border:4px solid var(--ink);border-radius:60% 60% 20% 60%}
+.glid .l{left:50%;margin-left:-34px;transform:rotate(-18deg)}
+.glid .r{left:50%;margin-left:4px;transform:rotate(18deg) scaleX(-1)}
+.glid b{position:absolute;top:-12px;left:50%;width:14px;height:14px;margin-left:-7px;background:var(--red);border:3px solid var(--ink);border-radius:50%;z-index:3}
+.gout{position:absolute;left:50%;top:30px;font-size:2.2rem;margin-left:-18px;opacity:0;z-index:1}
+.sp{position:absolute;font-size:1.5rem;color:var(--yel);text-shadow:2px 2px 0 var(--ink);animation:tw 1.6s ease-in-out infinite}
+@keyframes tw{0%,100%{transform:scale(.4) rotate(0);opacity:.3}50%{transform:scale(1.2) rotate(40deg);opacity:1}}
+@keyframes gshake{0%,68%,100%{transform:rotate(0)}72%{transform:rotate(-6deg)}76%{transform:rotate(6deg)}80%{transform:rotate(-4deg)}84%{transform:rotate(3deg)}88%{transform:rotate(0)}}
+@keyframes ghop{0%,70%,100%{transform:translateY(0)}78%{transform:translateY(-12px) rotate(-4deg)}86%{transform:translateY(0)}}
+@keyframes rise{0%{opacity:0;transform:translateY(20px) scale(.3)}30%{opacity:1}100%{opacity:0;transform:translateY(-90px) scale(1.5)}}
+.gift.open .gwrap{animation:none}
+.gift.open .glid{animation:none;transform:translate(14px,-78px) rotate(24deg)}
+.gift.open .gout{animation:rise 1.4s ease-out forwards}
+.gift.open .gbody{animation:gpop .5s}
+@keyframes gpop{50%{transform:scale(1.1)}}
+.gtxt{margin-top:16px;font-size:1.7rem;color:#fff;-webkit-text-stroke:2px var(--ink);text-shadow:3px 3px 0 var(--red);paint-order:stroke fill}
 #snd{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));z-index:60;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--yel);font-size:1.2rem}
 .city{position:fixed;left:0;right:0;bottom:0;height:140px;z-index:1;pointer-events:none}
 .city svg{width:100%;height:100%}
@@ -119,7 +140,17 @@ body.on .pop{animation-play-state:running}
   </div>
   <p class="msg pop" id="ms" style="animation-delay:2.2s"></p>
   <div class="pop" style="animation-delay:2.4s"><a class="btn bangers" id="wa" target="_blank" rel="noopener">💬 ¡SÍ ASISTIRÉ!</a><p class="msg" style="font-size:.8rem;margin-top:14px">confirmo mi asistencia al cumpleaños de Mael</p></div>
-  <p class="msg pop" style="animation-delay:2.6s;font-size:.8rem"> ¡No te olvides mi regalo!🎁< </p>
+  <div class="gift pop" id="gift" style="animation-delay:2.6s">
+    <div class="gwrap">
+      <span class="sp" style="left:-4px;top:10px">✦</span><span class="sp" style="right:-2px;top:0;animation-delay:.5s">✦</span>
+      <span class="sp" style="left:8px;top:70px;animation-delay:1s;font-size:1rem">✦</span><span class="sp" style="right:6px;top:64px;animation-delay:.3s;font-size:1.1rem">✦</span>
+      <div class="gout">🎉</div>
+      <div class="glid"><i class="l"></i><i class="r"></i><b></b></div>
+      <div class="gbody"></div>
+    </div>
+    <p class="gtxt bangers">¡NO TE OLVIDES MI REGALO! 🎁</p>
+    <p class="msg" style="font-size:.8rem;margin-top:4px">Toca el regalo 👆</p>
+  </div>
 </main>
 
 <div class="city"><svg viewBox="0 0 400 140" preserveAspectRatio="none"><polygon fill="#0a1d5c" points="0,140 0,85 20,85 20,55 45,55 45,95 70,95 70,35 95,35 95,75 120,75 120,105 150,105 150,45 175,45 175,25 200,25 200,65 230,65 230,95 255,95 255,50 285,50 285,80 310,80 310,40 340,40 340,90 365,90 365,65 400,65 400,140"/><rect y="128" width="400" height="12" fill="#e62429"/></svg></div>
@@ -144,7 +175,7 @@ var f=new Date(CONFIG.fecha);
 $("nm").textContent=CONFIG.nombre;
 $("ag").textContent="¡CUMPLE "+CONFIG.edad+" AÑOS!";
 $("fe").textContent=f.toLocaleDateString("es-PE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-$("ho").textContent=f.toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"});
+$("ho").textContent=("0"+f.getHours()).slice(-2)+":"+("0"+f.getMinutes()).slice(-2);
 $("lu").textContent=CONFIG.lugar;
 $("ms").textContent=CONFIG.mensaje;
 $("wa").href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent("¡Hola! ✅ Sí asistiré al cumpleaños de "+CONFIG.nombre+" 🦸");
@@ -193,8 +224,11 @@ P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.l-=.018;cx.globalAlpha=Mat
 $("intro").addEventListener("click",function(e){thwip();setTimeout(fanfare,250);burst(e.clientX,e.clientY);
 this.classList.add("go");document.body.classList.add("on");
 setTimeout(function(){for(var i=0;i<6;i++)sparks(innerWidth*Math.random(),innerHeight*.3)},700)},{once:true});
-document.addEventListener("pointerdown",function(e){if(e.target.id==="snd"||e.target.closest("a,video")||$("intro").className!=="go")return;thwip();burst(e.clientX,e.clientY)});
+document.addEventListener("pointerdown",function(e){if(e.target.id==="snd"||e.target.closest("a,video,.gift")||$("intro").className!=="go")return;thwip();burst(e.clientX,e.clientY)});
 $("snd").addEventListener("click",function(){muted=!muted;this.textContent=muted?"🔇":"🔊"});
+$("gift").addEventListener("click",function(){var g=this;if(g.classList.contains("open"))return;g.classList.add("open");
+var r=g.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+50;fanfare();for(var i=0;i<5;i++)setTimeout(function(){sparks(x,y)},i*140);
+setTimeout(function(){g.classList.remove("open")},2600)});
 </script>
 </body>
 </html>
