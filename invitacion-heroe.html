@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¡Estás invitado! – Cumpleaños Superhéroe</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e62429;--blue:#1456d6;--navy:#0a1d5c;--yel:#ffd60a;--ink:#0b0b1a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--blue);color:#fff;font-family:'Nunito',system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-60%;background:repeating-conic-gradient(rgba(255,255,255,.12) 0 5deg,transparent 5deg 10deg);animation:spin 90s linear infinite;z-index:0}
+body:after{content:"";position:fixed;inset:0;background:radial-gradient(rgba(230,36,41,.6) 2.2px,transparent 2.7px) 0 0/16px 16px;-webkit-mask:linear-gradient(#000,transparent 65%);mask:linear-gradient(#000,transparent 65%);z-index:0;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bangers{font-family:'Bangers','Impact',sans-serif;letter-spacing:2px}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:45}
+#intro{position:fixed;inset:0;z-index:50;background:radial-gradient(circle,var(--blue) 30%,var(--navy));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:transform .9s cubic-bezier(.7,0,.2,1),opacity .9s;cursor:pointer;overflow:hidden}
+#intro:before{content:"";position:absolute;inset:-60%;background:repeating-conic-gradient(rgba(255,255,255,.14) 0 5deg,transparent 5deg 10deg);animation:spin 40s linear infinite}
+#intro>*{position:relative}
+#intro.go{transform:scale(1.6);opacity:0;pointer-events:none}
+#intro h2{font-size:clamp(2.6rem,12vw,4.6rem);line-height:.95;color:var(--yel);-webkit-text-stroke:2px var(--ink);text-shadow:5px 5px 0 var(--red),8px 8px 0 var(--ink);animation:pulse 1.4s infinite}
+#intro .em{font-size:4.5rem;margin:14px 0;animation:wig 1s infinite}
+#intro .tap{background:var(--red);border:3px solid #fff;box-shadow:0 5px 0 var(--ink);padding:8px 22px;border-radius:40px;font-size:1.6rem}
+@keyframes pulse{50%{transform:scale(1.07)}}
+@keyframes wig{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
+main{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:20px 20px 170px;text-align:center}
+.scene{position:relative;height:250px}
+.swing{position:absolute;top:-80px;left:50%;transform-origin:50% 0;animation:sw 3.4s ease-in-out infinite alternate}
+.swing i{display:block;width:3px;height:130px;background:#fff;box-shadow:0 0 0 1.5px var(--ink)}
+.swing svg,.swing img{display:block;width:110px;margin:-2px 0 0 -8px;transform-origin:9px 20px;animation:swr 3.4s ease-in-out infinite alternate;filter:drop-shadow(4px 5px 0 rgba(0,0,0,.35))}
+@keyframes sw{from{transform:rotate(-16deg)}to{transform:rotate(16deg)}}
+@keyframes swr{from{transform:rotate(16deg)}to{transform:rotate(-16deg)}}
+.swing img{margin-left:-55px;transform-origin:50% 0}
+.s2{animation-direction:alternate-reverse}
+.s2 img{animation-direction:alternate-reverse}
+.burst{position:relative;display:inline-block;padding:26px 18px}
+.burst:before{content:"";position:absolute;inset:-12px -22px;background:var(--yel);border:0;clip-path:polygon(50% 0,60% 18%,82% 6%,78% 28%,100% 30%,86% 50%,100% 70%,78% 72%,82% 94%,60% 82%,50% 100%,40% 82%,18% 94%,22% 72%,0 70%,14% 50%,0 30%,22% 28%,18% 6%,40% 18%);z-index:-1;animation:spin 25s linear infinite}
+.burst h1{font-size:clamp(2.6rem,12vw,4.2rem);line-height:.95;color:#fff;-webkit-text-stroke:2.5px var(--ink);text-shadow:4px 4px 0 var(--red),7px 7px 0 var(--ink);transform:rotate(-4deg)}
+.pop{opacity:0;transform:translateY(30px) scale(.9);animation:pop .8s cubic-bezier(.2,1.4,.4,1) forwards;animation-play-state:paused}
+body.on .pop{animation-play-state:running}
+@keyframes pop{to{opacity:1;transform:none}}
+.sub{margin-top:26px;font-size:1.1rem;font-weight:900;text-shadow:2px 2px 0 var(--ink)}
+.name{font-size:clamp(3.4rem,17vw,6rem);color:var(--yel);-webkit-text-stroke:2.5px var(--ink);text-shadow:5px 5px 0 var(--red),8px 8px 0 var(--ink);line-height:1;margin:6px 0}
+.age{display:inline-block;background:var(--red);border:4px solid var(--ink);border-radius:8px;padding:4px 22px;font-size:1.8rem;box-shadow:5px 5px 0 var(--ink);transform:rotate(2deg)}
+.grid{display:grid;gap:14px;margin-top:30px}
+.box{background:#fff;color:var(--ink);border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:6px;padding:12px 14px;text-align:left;display:flex;gap:14px;align-items:center}
+.box em{font-style:normal;font-size:2rem}
+.box small{display:block;color:var(--red);text-transform:uppercase;letter-spacing:1px;font-size:.72rem;font-weight:900}
+.box span{font-weight:900;font-size:1.05rem}
+.count{display:flex;gap:8px;justify-content:center;margin-top:30px}
+.count div{background:var(--red);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:6px;min-width:68px;padding:8px 4px}
+.count b{display:block;font-size:2rem;font-family:'Bangers',sans-serif}
+.count small{font-size:.65rem;text-transform:uppercase;font-weight:900}
+.msg{margin-top:24px;font-weight:900;text-shadow:2px 2px 0 var(--ink)}
+.btn{display:inline-block;margin-top:26px;background:var(--yel);color:var(--ink);text-decoration:none;font-size:1.6rem;padding:12px 30px;border-radius:8px;border:4px solid var(--ink);box-shadow:0 7px 0 var(--red),0 7px 0 4px var(--ink);animation:pulse 1.6s infinite}
+#snd{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));z-index:60;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--yel);font-size:1.2rem}
+.city{position:fixed;left:0;right:0;bottom:0;height:140px;z-index:1;pointer-events:none}
+.city svg{width:100%;height:100%}
+.splat{position:fixed;width:170px;height:170px;margin:-85px 0 0 -85px;z-index:40;pointer-events:none;animation:splat .9s ease-out forwards}
+@keyframes splat{0%{transform:scale(.2);opacity:1}60%{opacity:1}100%{transform:scale(1.2);opacity:0}}
+.word{position:fixed;z-index:41;font-size:2.6rem;color:var(--yel);-webkit-text-stroke:2px var(--ink);text-shadow:3px 3px 0 var(--red);pointer-events:none;animation:wd .9s ease-out forwards}
+@keyframes wd{0%{transform:translate(-50%,-50%) scale(.3) rotate(-8deg);opacity:1}30%{transform:translate(-50%,-70%) scale(1.2) rotate(-8deg)}100%{transform:translate(-50%,-130%) scale(1) rotate(-8deg);opacity:0}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<button id="snd" aria-label="Sonido">🔊</button>
+
+<div id="intro">
+  <h2 class="bangers">¡MISIÓN<br>SUPERHÉROE!</h2>
+  <div class="em">🦸</div>
+  <div class="tap bangers">¡TOCA PARA ENTRAR!</div>
+</div>
+
+<main>
+  <div class="scene"><div class="swing"><i></i><div id="hero">
+<svg viewBox="0 0 120 160" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<defs><path id="l1" d="M52 100 L40 146"/><path id="l2" d="M68 100 L84 138"/><path id="a1" d="M40 58 L12 22"/><path id="a2" d="M80 58 L106 84"/></defs>
+<g id="limbs"><use href="#l1" stroke="#0b0b1a" stroke-width="18"/><use href="#l1" stroke="#1456d6" stroke-width="12"/><use href="#l2" stroke="#0b0b1a" stroke-width="18"/><use href="#l2" stroke="#1456d6" stroke-width="12"/>
+<use href="#a1" stroke="#0b0b1a" stroke-width="16"/><use href="#a1" stroke="#e62429" stroke-width="10"/><use href="#a2" stroke="#0b0b1a" stroke-width="16"/><use href="#a2" stroke="#e62429" stroke-width="10"/></g>
+<g stroke="#0b0b1a" stroke-width="3"><circle cx="40" cy="148" r="9" fill="#ffd60a"/><circle cx="85" cy="140" r="9" fill="#ffd60a"/><circle cx="12" cy="22" r="8" fill="#ffd60a"/><circle cx="106" cy="84" r="8" fill="#ffd60a"/>
+<path d="M38 52 Q60 44 82 52 L74 102 L46 102Z" fill="#e62429"/><path d="M50 48 L70 48 L66 102 L54 102Z" fill="#1456d6" stroke-width="2"/>
+<polygon points="60,64 64,73 74,74 66,80 69,90 60,84 51,90 54,80 46,74 56,73" fill="#ffd60a" stroke-width="2"/>
+<rect x="46" y="98" width="28" height="9" rx="2" fill="#ffd60a"/>
+<ellipse cx="60" cy="30" rx="20" ry="23" fill="#e62429"/><path d="M41 22 Q60 8 79 22 L78 29 Q60 17 42 29Z" fill="#1456d6" stroke-width="2"/>
+<circle cx="52" cy="35" r="7" fill="#fff" stroke-width="2.5"/><circle cx="68" cy="35" r="7" fill="#fff" stroke-width="2.5"/>
+<circle cx="53" cy="36" r="2.6" fill="#0b0b1a" stroke="none"/><circle cx="67" cy="36" r="2.6" fill="#0b0b1a" stroke="none"/>
+<path d="M53 47 Q60 52 67 47" stroke-width="2.5"/></g>
+</svg></div></div></div>
+  <div class="burst pop"><h1 class="bangers">¡ESTÁS<br>INVITADO!</h1></div>
+  <p class="sub pop" style="animation-delay:.5s">Únete a la misión en el cumpleaños de</p>
+  <div class="name bangers pop" id="nm" style="animation-delay:.8s"></div>
+  <div class="age bangers pop" id="ag" style="animation-delay:1.1s"></div>
+  <div class="grid">
+    <div class="box pop" style="animation-delay:1.4s"><em>📅</em><div><small>Fecha</small><span id="fe"></span></div></div>
+    <div class="box pop" style="animation-delay:1.6s"><em>⏰</em><div><small>Hora</small><span id="ho"></span></div></div>
+    <div class="box pop" style="animation-delay:1.8s"><em>📍</em><div><small>Lugar</small><span id="lu"></span></div></div>
+  </div>
+  <div class="count pop" style="animation-delay:2s">
+    <div><b id="d">0</b><small>Días</small></div><div><b id="h">0</b><small>Horas</small></div>
+    <div><b id="m">0</b><small>Min</small></div><div><b id="s">0</b><small>Seg</small></div>
+  </div>
+  <p class="msg pop" id="ms" style="animation-delay:2.2s"></p>
+  <a class="btn bangers pop" id="wa" style="animation-delay:2.4s" target="_blank" rel="noopener">¡SÍ ASISTIRÉ!</a>
+  <p class="msg pop" style="animation-delay:2.6s;font-size:.8rem">Toca la pantalla para lanzar telarañas ⚡</p>
+</main>
+
+<div class="city"><svg viewBox="0 0 400 140" preserveAspectRatio="none"><polygon fill="#0a1d5c" points="0,140 0,85 20,85 20,55 45,55 45,95 70,95 70,35 95,35 95,75 120,75 120,105 150,105 150,45 175,45 175,25 200,25 200,65 230,65 230,95 255,95 255,50 285,50 285,80 310,80 310,40 340,40 340,90 365,90 365,65 400,65 400,140"/><rect y="128" width="400" height="12" fill="#e62429"/></svg></div>
+
+<script>
+/* ====== EDITA AQUÍ TUS DATOS ====== */
+var CONFIG={
+  nombre:"Mateo",
+  edad:6,
+  fecha:"2026-11-14T16:00:00",
+  lugar:"Av. Los Pinos 123, Lima",
+  whatsapp:"", /* tu número con código de país, sin + ni espacios. Ej: 51987654321 */
+  mensaje:"¡Ven con tu mejor disfraz de superhéroe! Habrá juegos, pizza, pastel y muchas sorpresas.",
+  imagen:"", /* opcional: tu propia imagen del 1.er personaje (PNG sin fondo: ruta propia o data:URI) */
+  imagen2:"", /* opcional: 2.º personaje */
+  sonido:"" /* opcional: tu sonido (mp3 corto: ruta propia o data:URI). Si lo pones, reemplaza al sonido por defecto */
+};
+/* =================================== */
+var $=function(i){return document.getElementById(i)};
+var f=new Date(CONFIG.fecha);
+$("nm").textContent=CONFIG.nombre;
+$("ag").textContent="¡CUMPLE "+CONFIG.edad+" AÑOS!";
+$("fe").textContent=f.toLocaleDateString("es-PE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+$("ho").textContent=f.toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"});
+$("lu").textContent=CONFIG.lugar;
+$("ms").textContent=CONFIG.mensaje;
+$("wa").href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent("¡Hola! ✅ Sí asistiré al cumpleaños de "+CONFIG.nombre+" 🦸");
+if(CONFIG.imagen)$("hero").innerHTML='<img alt="" src="'+CONFIG.imagen+'">';
+if(CONFIG.imagen2){document.querySelector(".swing").style.left="28%";var s2=document.createElement("div");s2.className="swing s2";s2.style.left="72%";s2.innerHTML='<i></i><div><img alt="" src="'+CONFIG.imagen2+'"></div>';document.querySelector(".scene").appendChild(s2)}
+
+function tick(){var t=f-new Date();if(t<0)t=0;$("d").textContent=Math.floor(t/864e5);$("h").textContent=Math.floor(t%864e5/36e5);$("m").textContent=Math.floor(t%36e5/6e4);$("s").textContent=Math.floor(t%6e4/1e3)}
+tick();setInterval(tick,1000);
+
+var AC=null,muted=false;
+function ac(){if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(C)AC=new C()}if(AC&&AC.state==="suspended")AC.resume();return AC}
+function thwip(){if(muted)return;if(CONFIG.sonido){try{new Audio(CONFIG.sonido).play()}catch(e){}return}var a=ac();if(!a)return;var n=a.sampleRate*.3,b=a.createBuffer(1,n,a.sampleRate),d=b.getChannelData(0);
+for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);
+var s=a.createBufferSource();s.buffer=b;var fl=a.createBiquadFilter();fl.type="bandpass";fl.Q.value=4;
+fl.frequency.setValueAtTime(500,a.currentTime);fl.frequency.exponentialRampToValueAtTime(4500,a.currentTime+.22);
+var g=a.createGain();g.gain.setValueAtTime(.0001,a.currentTime);g.gain.exponentialRampToValueAtTime(.9,a.currentTime+.04);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.3);
+s.connect(fl);fl.connect(g);g.connect(a.destination);s.start();
+var o=a.createOscillator(),og=a.createGain();o.type="sine";o.frequency.setValueAtTime(1200,a.currentTime);o.frequency.exponentialRampToValueAtTime(250,a.currentTime+.12);
+og.gain.setValueAtTime(.25,a.currentTime);og.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.15);o.connect(og);og.connect(a.destination);o.start();o.stop(a.currentTime+.16)}
+function fanfare(){if(muted||CONFIG.sonido)return;var a=ac();if(!a)return;[[392,0],[523,.14],[659,.28],[784,.42],[659,.62],[784,.76],[1047,.95]].forEach(function(x){var o=a.createOscillator(),g=a.createGain();o.type="square";o.frequency.value=x[0];var t=a.currentTime+x[1]+.1;
+g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.13,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+.32)})}
+
+function burst(x,y){var s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.setAttribute("viewBox","-50 -50 100 100");s.setAttribute("class","splat");s.style.left=x+"px";s.style.top=y+"px";
+var h='<g stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round">';for(var i=0;i<8;i++){var a=i*Math.PI/4;h+='<line x1="0" y1="0" x2="'+(48*Math.cos(a)).toFixed(1)+'" y2="'+(48*Math.sin(a)).toFixed(1)+'"/>'}
+[16,32,46].forEach(function(r){var p=[];for(var i=0;i<8;i++){var a=i*Math.PI/4,q=r*(.82+.18*Math.abs(Math.sin(i*1.7)));p.push((q*Math.cos(a)).toFixed(1)+","+(q*Math.sin(a)).toFixed(1))}h+='<polygon points="'+p.join(" ")+'"/>'});
+s.innerHTML=h+"</g>";document.body.appendChild(s);setTimeout(function(){s.remove()},950);
+var w=document.createElement("div");w.className="word bangers";w.textContent=["¡THWIP!","¡POW!","¡ZAP!","¡BAM!"][Math.random()*4|0];w.style.left=x+"px";w.style.top=y+"px";document.body.appendChild(w);setTimeout(function(){w.remove()},950);
+sparks(x,y)}
+
+var cv=$("fx"),cx=cv.getContext("2d"),P=[],C=["#e62429","#ffd60a","#fff"];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener("resize",rs);
+function sparks(x,y){for(var i=0;i<24;i++){var a=Math.random()*6.28,v=2+Math.random()*5;P.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:C[i%3]})}}
+(function loop(){cx.clearRect(0,0,cv.width,cv.height);P=P.filter(function(p){return p.l>0});
+P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.l-=.018;cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.fillRect(p.x,p.y,6,6)});requestAnimationFrame(loop)})();
+
+$("intro").addEventListener("click",function(e){thwip();setTimeout(fanfare,250);burst(e.clientX,e.clientY);
+this.classList.add("go");document.body.classList.add("on");
+setTimeout(function(){for(var i=0;i<6;i++)sparks(innerWidth*Math.random(),innerHeight*.3)},700)},{once:true});
+document.addEventListener("pointerdown",function(e){if(e.target.id==="snd"||$("intro").className!=="go")return;thwip();burst(e.clientX,e.clientY)});
+$("snd").addEventListener("click",function(){muted=!muted;this.textContent=muted?"🔇":"🔊"});
+</script>
+</body>
+</html>
