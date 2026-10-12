@@ -9,7 +9,8 @@
 :root{--red:#e62429;--blue:#1456d6;--navy:#0a1d5c;--yel:#ffd60a;--ink:#0b0b1a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box;margin:0}
-body{background:var(--blue);color:#fff;font-family:'Nunito',system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+html{overflow-x:hidden;overscroll-behavior-x:none}
+body{background:var(--blue);color:#fff;font-family:'Nunito',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;width:100%;touch-action:pan-y}
 body:before{content:"";position:fixed;inset:-60%;background:repeating-conic-gradient(rgba(255,255,255,.12) 0 5deg,transparent 5deg 10deg);animation:spin 90s linear infinite;z-index:0}
 body:after{content:"";position:fixed;inset:0;background:radial-gradient(rgba(230,36,41,.6) 2.2px,transparent 2.7px) 0 0/16px 16px;-webkit-mask:linear-gradient(#000,transparent 65%);mask:linear-gradient(#000,transparent 65%);z-index:0;pointer-events:none}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -24,7 +25,7 @@ body:after{content:"";position:fixed;inset:0;background:radial-gradient(rgba(230
 #intro .tap{background:var(--red);border:3px solid #fff;box-shadow:0 5px 0 var(--ink);padding:8px 22px;border-radius:40px;font-size:1.6rem}
 @keyframes pulse{50%{transform:scale(1.07)}}
 @keyframes wig{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(10deg)}}
-main{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:20px 20px 170px;text-align:center}
+main{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:20px 20px 170px;text-align:center;overflow-x:clip}
 .scene{position:relative;height:250px}
 .swing{position:absolute;top:-80px;left:50%;transform-origin:50% 0;animation:sw 3.4s ease-in-out infinite alternate}
 .swing i{display:block;width:3px;height:130px;background:#fff;box-shadow:0 0 0 1.5px var(--ink)}
@@ -54,6 +55,9 @@ body.on .pop{animation-play-state:running}
 .count small{font-size:.65rem;text-transform:uppercase;font-weight:900}
 .msg{margin-top:24px;font-weight:900;text-shadow:2px 2px 0 var(--ink)}
 .btn{display:inline-block;margin-top:26px;background:var(--yel);color:var(--ink);text-decoration:none;font-size:1.6rem;padding:12px 30px;border-radius:8px;border:4px solid var(--ink);box-shadow:0 7px 0 var(--red),0 7px 0 4px var(--ink);animation:pulse 1.6s infinite}
+.vid{margin-top:26px;background:#fff;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:6px;padding:8px}
+.vid b{display:block;color:var(--red);font-size:1.4rem;margin-bottom:6px}
+.vid video{width:100%;max-height:70vh;display:block;background:#000;border-radius:3px}
 #snd{position:fixed;right:14px;top:calc(14px + env(safe-area-inset-top,0px));z-index:60;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--yel);font-size:1.2rem}
 .city{position:fixed;left:0;right:0;bottom:0;height:140px;z-index:1;pointer-events:none}
 .city svg{width:100%;height:100%}
@@ -69,7 +73,7 @@ body.on .pop{animation-play-state:running}
 
 <div id="intro">
   <h2 class="bangers">¡MISIÓN<br>SUPERHÉROE!</h2>
-  <div class="em">🕷</div>
+  <div class="em">🦸</div>
   <div class="tap bangers">¡TOCA PARA ENTRAR!</div>
 </div>
 
@@ -89,6 +93,7 @@ body.on .pop{animation-play-state:running}
 <path d="M53 47 Q60 52 67 47" stroke-width="2.5"/></g>
 </svg></div></div></div>
   <div class="burst pop"><h1 class="bangers">¡ESTÁS<br>INVITADO!</h1></div>
+  <div class="vid pop" id="vbox" style="display:none;animation-delay:.4s"><b class="bangers">▶ ¡UN MENSAJE ESPECIAL PARA TI!</b><video id="vid" controls playsinline preload="metadata"></video></div>
   <p class="sub pop" style="animation-delay:.5s">Únete a la misión en el cumpleaños de</p>
   <div class="name bangers pop" id="nm" style="animation-delay:.8s"></div>
   <div class="age bangers pop" id="ag" style="animation-delay:1.1s"></div>
@@ -102,7 +107,7 @@ body.on .pop{animation-play-state:running}
     <div><b id="m">0</b><small>Min</small></div><div><b id="s">0</b><small>Seg</small></div>
   </div>
   <p class="msg pop" id="ms" style="animation-delay:2.2s"></p>
-  <a class="btn bangers pop" id="wa" style="animation-delay:2.4s" target="_blank" rel="noopener">¡SÍ ASISTIRÉ!</a>
+  <div class="pop" style="animation-delay:2.4s"><a class="btn bangers" id="wa" target="_blank" rel="noopener">💬 ¡SÍ ASISTIRÉ!</a><p class="msg" style="font-size:.8rem;margin-top:14px">Se abrirá WhatsApp para enviar tu confirmación</p></div>
   <p class="msg pop" style="animation-delay:2.6s;font-size:.8rem">Toca la pantalla para lanzar telarañas ⚡</p>
 </main>
 
@@ -119,6 +124,7 @@ var CONFIG={
   mensaje:"¡Ven con tu mejor disfraz de superhéroe! Habrá juegos, pizza, pastel y muchas sorpresas.",
   imagen:"Personaje1.png", /* opcional: tu propia imagen del 1.er personaje (PNG sin fondo: ruta propia o data:URI) */
   imagen2:"Personaje2.png", /* opcional: 2.º personaje */
+  video:"", /* opcional: video de felicitación (mp4: ruta propia, ej. video.mp4) */
   sonido:"" /* opcional: tu sonido (mp3 corto: ruta propia o data:URI). Si lo pones, reemplaza al sonido por defecto */
 };
 /* =================================== */
@@ -134,21 +140,31 @@ $("wa").href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent("¡Hol
 if(CONFIG.imagen)$("hero").innerHTML='<img alt="" src="'+CONFIG.imagen+'">';
 if(CONFIG.imagen2){document.querySelector(".swing").style.left="28%";var s2=document.createElement("div");s2.className="swing s2";s2.style.left="72%";s2.innerHTML='<i></i><div><img alt="" src="'+CONFIG.imagen2+'"></div>';document.querySelector(".scene").appendChild(s2)}
 
+if(CONFIG.video){var V=$("vid");V.src=CONFIG.video;$("vbox").style.display="block";["play"].forEach(function(n){V.addEventListener(n,function(){vp=true})});["pause","ended"].forEach(function(n){V.addEventListener(n,function(){vp=false})})}
 function tick(){var t=f-new Date();if(t<0)t=0;$("d").textContent=Math.floor(t/864e5);$("h").textContent=Math.floor(t%864e5/36e5);$("m").textContent=Math.floor(t%36e5/6e4);$("s").textContent=Math.floor(t%6e4/1e3)}
 tick();setInterval(tick,1000);
 
 var AC=null,muted=false;
 function ac(){if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(C)AC=new C()}if(AC&&AC.state==="suspended")AC.resume();return AC}
-function thwip(){if(muted)return;if(CONFIG.sonido){try{new Audio(CONFIG.sonido).play()}catch(e){}return}var a=ac();if(!a)return;var n=a.sampleRate*.3,b=a.createBuffer(1,n,a.sampleRate),d=b.getChannelData(0);
-for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);
-var s=a.createBufferSource();s.buffer=b;var fl=a.createBiquadFilter();fl.type="bandpass";fl.Q.value=4;
-fl.frequency.setValueAtTime(500,a.currentTime);fl.frequency.exponentialRampToValueAtTime(4500,a.currentTime+.22);
-var g=a.createGain();g.gain.setValueAtTime(.0001,a.currentTime);g.gain.exponentialRampToValueAtTime(.9,a.currentTime+.04);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.3);
-s.connect(fl);fl.connect(g);g.connect(a.destination);s.start();
-var o=a.createOscillator(),og=a.createGain();o.type="sine";o.frequency.setValueAtTime(1200,a.currentTime);o.frequency.exponentialRampToValueAtTime(250,a.currentTime+.12);
-og.gain.setValueAtTime(.25,a.currentTime);og.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.15);o.connect(og);og.connect(a.destination);o.start();o.stop(a.currentTime+.16)}
-function fanfare(){if(muted||CONFIG.sonido)return;var a=ac();if(!a)return;[[392,0],[523,.14],[659,.28],[784,.42],[659,.62],[784,.76],[1047,.95]].forEach(function(x){var o=a.createOscillator(),g=a.createGain();o.type="square";o.frequency.value=x[0];var t=a.currentTime+x[1]+.1;
-g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.13,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+.32)})}
+var vp=false;
+function noise(a,d){var n=Math.floor(a.sampleRate*d),b=a.createBuffer(1,n,a.sampleRate),k=b.getChannelData(0);for(var i=0;i<n;i++)k[i]=Math.random()*2-1;var s=a.createBufferSource();s.buffer=b;return s}
+function env(g,t,at,pk,dc){g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(pk,t+at);g.gain.exponentialRampToValueAtTime(.0001,t+at+dc)}
+function web(a,t){
+/* chorro de aire a presión */
+var s=noise(a,.4),hp=a.createBiquadFilter();hp.type="highpass";hp.frequency.value=1800;
+var bp=a.createBiquadFilter();bp.type="bandpass";bp.Q.value=1.2;bp.frequency.setValueAtTime(7000,t);bp.frequency.exponentialRampToValueAtTime(2500,t+.18);
+var g=a.createGain();env(g,t,.006,.7,.2);s.connect(hp);hp.connect(bp);bp.connect(g);g.connect(a.destination);s.start(t);s.stop(t+.4);
+/* hilo elástico que vibra */
+var o=a.createOscillator(),lf=a.createOscillator(),lg=a.createGain(),og=a.createGain();o.type="triangle";
+o.frequency.setValueAtTime(1000,t+.02);o.frequency.exponentialRampToValueAtTime(320,t+.3);lf.frequency.value=38;lg.gain.value=40;lf.connect(lg);lg.connect(o.frequency);
+env(og,t+.02,.01,.16,.28);o.connect(og);og.connect(a.destination);o.start(t+.02);lf.start(t+.02);o.stop(t+.35);lf.stop(t+.35);
+/* telaraña que se pega */
+var s2=noise(a,.1),lp=a.createBiquadFilter();lp.type="lowpass";lp.frequency.value=900;var g2=a.createGain();env(g2,t+.17,.004,.5,.07);
+s2.connect(lp);lp.connect(g2);g2.connect(a.destination);s2.start(t+.17);s2.stop(t+.27)}
+function thwip(){if(muted||vp)return;if(CONFIG.sonido){try{new Audio(CONFIG.sonido).play()}catch(e){}return}var a=ac();if(a)web(a,a.currentTime)}
+function fanfare(){if(muted||vp||CONFIG.sonido)return;var a=ac();if(!a)return;var t=a.currentTime+.05;
+[196,294,392].forEach(function(f){var o=a.createOscillator(),lp=a.createBiquadFilter(),g=a.createGain();o.type="sawtooth";o.frequency.value=f;lp.type="lowpass";lp.frequency.value=900;
+env(g,t,.15,.07,1.4);o.connect(lp);lp.connect(g);g.connect(a.destination);o.start(t);o.stop(t+1.7)})}
 
 function burst(x,y){var s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.setAttribute("viewBox","-50 -50 100 100");s.setAttribute("class","splat");s.style.left=x+"px";s.style.top=y+"px";
 var h='<g stroke="#fff" fill="none" stroke-width="1.6" stroke-linecap="round">';for(var i=0;i<8;i++){var a=i*Math.PI/4;h+='<line x1="0" y1="0" x2="'+(48*Math.cos(a)).toFixed(1)+'" y2="'+(48*Math.sin(a)).toFixed(1)+'"/>'}
@@ -166,7 +182,7 @@ P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.l-=.018;cx.globalAlpha=Mat
 $("intro").addEventListener("click",function(e){thwip();setTimeout(fanfare,250);burst(e.clientX,e.clientY);
 this.classList.add("go");document.body.classList.add("on");
 setTimeout(function(){for(var i=0;i<6;i++)sparks(innerWidth*Math.random(),innerHeight*.3)},700)},{once:true});
-document.addEventListener("pointerdown",function(e){if(e.target.id==="snd"||$("intro").className!=="go")return;thwip();burst(e.clientX,e.clientY)});
+document.addEventListener("pointerdown",function(e){if(e.target.id==="snd"||e.target.closest("a,video")||$("intro").className!=="go")return;thwip();burst(e.clientX,e.clientY)});
 $("snd").addEventListener("click",function(){muted=!muted;this.textContent=muted?"🔇":"🔊"});
 </script>
 </body>
